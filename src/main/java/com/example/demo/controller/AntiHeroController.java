@@ -28,6 +28,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/v1/anti-heroes")
+@PreAuthorize("isAuthenticated()")
 public class AntiHeroController {
 
     private final AntiHeroService service;
@@ -66,7 +67,6 @@ public class AntiHeroController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<AntiHeroDto> getAllAntiHeroes() {
         var antiHeroList = StreamSupport.stream(service.getAllAntiHeroes().spliterator(), false).collect(Collectors.toList());
         return antiHeroList.stream().map(this::convert2Dto).collect(Collectors.toList());

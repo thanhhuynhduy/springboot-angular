@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutheticationRequest implements Serializable {
+public class AuthenticationRequest implements Serializable {
 
-    private String email;
+    private String username;
     private String password;
 }
