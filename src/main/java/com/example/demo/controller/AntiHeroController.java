@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("api/v1/anti-heroes")
 @PreAuthorize("isAuthenticated()")
+@Log4j2
 public class AntiHeroController {
 
     private final AntiHeroService service;
@@ -68,6 +70,7 @@ public class AntiHeroController {
 
     @GetMapping
     public List<AntiHeroDto> getAllAntiHeroes() {
+        log.info("Getting anti hero list");
         var antiHeroList = StreamSupport.stream(service.getAllAntiHeroes().spliterator(), false).collect(Collectors.toList());
         return antiHeroList.stream().map(this::convert2Dto).collect(Collectors.toList());
     }
