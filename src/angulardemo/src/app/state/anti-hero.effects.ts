@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AntiHeroActions } from "./anti-hero.actions";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AntiHeroService } from "../services/anti-hero.service";
-import { catchError, map, mergeMap, EMPTY } from "rxjs";
+import { catchError, map, mergeMap, EMPTY, of } from "rxjs";
 
 @Injectable()
 export class AntiHeroEffects {
@@ -19,8 +19,8 @@ export class AntiHeroEffects {
             mergeMap(() => this.antiHeroService.getAllAntiHero()
         .pipe(
             map(antiHeroes => ({type: AntiHeroActions.SET_ANTI_HERO_LIST, antiHeroes})),
-            catchError(() => EMPTY)
+            catchError((error) => of({ type: AntiHeroActions.GET_ANTI_HERO_LIST_FAILED, error }))
         ))
         )
-    }, {dispatch: false})
+    }, {dispatch: true})
 }

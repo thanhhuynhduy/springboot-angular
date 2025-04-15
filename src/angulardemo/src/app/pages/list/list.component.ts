@@ -16,7 +16,7 @@ import { CommandBarActions } from '../../enums/command-bar-actions.enum';
 })
 export class ListComponent implements OnInit {
   antiHeroes: ReadonlyArray<AntiHero> = [];
-  antiHeroes$ = this.store.select(selectAntiHeroes());;
+  antiHeroes$ = this.store.select(selectAntiHeroes());
 
   headers: {headerName: string, fieldName: keyof AntiHero}[] = [
     {headerName: 'First Name', fieldName: 'firstName'},
@@ -31,15 +31,15 @@ export class ListComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    // this.store.dispatch({type: AntiHeroActions.GET_ANTI_HERO_LIST});
+    this.store.dispatch({type: AntiHeroActions.GET_ANTI_HERO_LIST});
     this.assignAntiHeroes();
   }
 
   assignAntiHeroes() {
-    console.log(this.antiHeroes$);
-    // this.antiHeroes$.subscribe((data) => {
-    //   this.antiHeroes = data;
-    // });
+    this.antiHeroes$.subscribe((data) => {
+      this.antiHeroes = data;
+      console.log(data);
+    });
   }
 
   selectAntiHero(data: {antiHero: AntiHero, action: TableActions}) {

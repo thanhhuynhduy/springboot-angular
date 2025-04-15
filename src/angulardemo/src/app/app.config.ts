@@ -1,8 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, isDevMode, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideState, provideStore } from '@ngrx/store';
+import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
@@ -18,6 +18,6 @@ export const appConfig: ApplicationConfig = {
       useClass: UniversalAppInterceptor,
       multi:true
     }, provideStore(), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), provideEffects([AntiHeroEffects]), 
-    provideStore(), provideState({name:'antiHeroReducer', reducer: antiHeroReducer}), 
+    provideStore(), provideState({name:'antiHeroState', reducer: antiHeroReducer}), 
     provideClientHydration(withEventReplay())]
 };
