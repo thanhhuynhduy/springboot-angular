@@ -1,0 +1,55 @@
+<form [formGroup]="antiHeroForm">
+  <p>
+    <label for="firstName">First name</label>
+    <input id="firstName" formControlName="firstName" type="text"/>
+  </p>
+  <div *ngIf="antiHeroForm.get('firstName')?.invalid && antiHeroForm.get('firstName')?.touched">
+    <div *ngIf="antiHeroForm?.errors?.['required']">
+      First name is required
+    </div>
+    <div *ngIf="antiHeroForm?.errors?.['minlength']">
+      Min length is 1
+    </div>
+  </div>
+  <p>
+    <label for="lastName">Last name</label>
+    <input id="lastName" formControlName="lastName" type="text"/>
+  </p>
+  <div *ngIf="antiHeroForm.get('lastName')?.invalid && antiHeroForm.get('lastName')?.touched">
+    <div *ngIf="antiHeroForm?.errors?.['required']">
+      Last name is required
+    </div>
+    <div *ngIf="antiHeroForm?.errors?.['minlength']">
+      Min length is 1
+    </div>
+  </div>
+  <p>
+    <label for="house">House</label>
+    <input id="house" formControlName="house" type="text"/>
+  </p>
+  <div *ngIf="antiHeroForm.get('house')?.invalid && antiHeroForm.get('house')?.touched">
+    <div *ngIf="antiHeroForm?.errors?.['required']">
+      House is required
+    </div>
+    <div *ngIf="antiHeroForm?.errors?.['minlength']">
+      Min length is 1
+    </div>
+  </div>
+  <p>
+    <label for="knownAs">Known as</label>
+    <input id="knownAs" formControlName="knownAs" type="text"/>
+  </p>
+  <div *ngIf="antiHeroForm.get('knownAs')?.invalid && antiHeroForm.get('knownAs')?.touched">
+    <div *ngIf="antiHeroForm?.errors?.['required']">
+      Known as is required
+    </div>
+    <div *ngIf="antiHeroForm?.errors?.['minlength']">
+      Min length is 1
+    </div>
+  </div>
+  <div>
+    <button (click)="clear()">
+      Clear
+    </button>
+  </div>
+</form>
