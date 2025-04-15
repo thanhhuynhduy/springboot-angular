@@ -13,12 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
                     "WHERE u.email = ?1"
     )
     Boolean selectExistsEmail(String email);
-    @Query(
-            "" +
-                    "SELECT CASE WHEN COUNT(u) > 0 THEN " +
-                    "TRUE ELSE FALSE END " +
-                    "FROM UserEntity u " +
-                    "WHERE u.username = ?1"
-    )
+
+    @Query("select u from UserEntity u where u.username = ?1")
     UserEntity findByUsername(String username);
 }
