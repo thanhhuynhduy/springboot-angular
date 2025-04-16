@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { AntiHeroState } from "./anti-hero.reducers";
 
-export const selectAntiHeroState = createFeatureSelector<AntiHeroState>('antiHeroState'); 
+export const selectAntiHeroState = createFeatureSelector<AntiHeroState>('antiHeroState');
 
 export const selectAntiHeroes = () => createSelector (
     selectAntiHeroState,

@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
-import { setAntiHeroList } from "./anti-hero.actions";
+import {AntiHeroActions, getAntiHeroList, setAntiHeroList} from "./anti-hero.actions";
 import { AntiHero } from "../models/anti-hero.interface";
 
 export interface AntiHeroState {
-    antiHeroes: ReadonlyArray<AntiHero>;
+    antiHeroes: AntiHero[];
 }
 
 export const initialState: AntiHeroState = {
@@ -12,6 +12,7 @@ export const initialState: AntiHeroState = {
 
 export const antiHeroReducer = createReducer (
     initialState,
-    on(setAntiHeroList, (state, {antiHeroes}) =>
-    {return {...state, antiHeroes}}),
+    on(getAntiHeroList, (state) => ({ ...state})),
+    on(setAntiHeroList, (state, action) =>
+      ({...state, antiHeroes: action.antiHeroes})),
 );
